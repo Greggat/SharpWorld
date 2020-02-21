@@ -49,6 +49,17 @@ namespace SharpWorld.Game.Units
             GameWorld.Instance.GetForm().UpdateHealthBars();
         }
 
+        public virtual void Heal(int healAmount)
+        {
+            int oldHp = _hp;
+            if (_hp + healAmount <= _maxHp)
+                _hp += healAmount;
+            else
+                _hp = _maxHp;
+            if (_hp > oldHp)
+                GameWorld.Instance.Log($"{_name} restored {_hp - oldHp} hp!");
+        }
+
         public virtual void Reset()
         {
             _hp = _maxHp;

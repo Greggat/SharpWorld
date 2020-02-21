@@ -179,6 +179,7 @@
             this.UseButton.TabIndex = 12;
             this.UseButton.Text = "Use";
             this.UseButton.UseVisualStyleBackColor = true;
+            this.UseButton.Click += new System.EventHandler(this.UseButton_Click);
             // 
             // PlayerHpPlaceholder
             // 
@@ -389,6 +390,7 @@
             this.DropButton.TabIndex = 13;
             this.DropButton.Text = "Drop";
             this.DropButton.UseVisualStyleBackColor = true;
+            this.DropButton.Click += new System.EventHandler(this.DropButton_Click);
             // 
             // CommandTextBox
             // 
@@ -457,6 +459,7 @@
             this.Controls.Add(this.LootBox);
             this.Controls.Add(this.GameLog);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.MaximizeBox = false;
             this.Name = "GameForm";
             this.Text = "Sharp World";
             this.tabControl1.ResumeLayout(false);

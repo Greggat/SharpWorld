@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using SharpWorld.Game.Zones;
+using SharpWorld.Game.Items;
 using SharpWorld.Helpers;
 
 namespace SharpWorld.Game.Units
@@ -20,6 +21,10 @@ namespace SharpWorld.Game.Units
         private bool _runaway;
 
         private int _xp;
+
+        private List<Item> _inventory;
+        public List<Item> GetInventory() => _inventory;
+
         public Player(string name)
         {
             _name = name;
@@ -33,6 +38,10 @@ namespace SharpWorld.Game.Units
 
             _xp = 0;
 
+            _inventory = new List<Item>();
+
+            //test inventory
+            _inventory.Add(new Food("Cooked Shrimp",4));
             GameWorld.Instance.Log($"Your character, {_name}, has been created!");
         }
         private void LevelUp()
@@ -41,6 +50,7 @@ namespace SharpWorld.Game.Units
 
             _level++;
             _maxHp++;
+            _hp++;
             _attack++;
             _defense++;
             GameWorld.Instance.Log($"You leveled up to {_level}!");

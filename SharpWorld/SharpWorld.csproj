@@ -57,6 +57,8 @@
     </Compile>
     <Compile Include="Game\Config.cs" />
     <Compile Include="Game\GameWorld.cs" />
+    <Compile Include="Game\Items\Food.cs" />
+    <Compile Include="Game\Items\Item.cs" />
     <Compile Include="Game\Units\Bosses\ToxicSerpent.cs" />
     <Compile Include="Helpers\Helper.cs" />
     <Compile Include="Game\Units\Monster.cs" />
@@ -91,8 +93,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Game\Items\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

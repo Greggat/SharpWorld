@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using SharpWorld.FormComponents;
 using SharpWorld.Game.Units;
+using SharpWorld.Game.Items;
 using SharpWorld.Game;
 
 namespace SharpWorld
@@ -52,6 +53,7 @@ namespace SharpWorld
             GameWorld.Instance.Start(this, "Bob");
             UpdateMonstersUI();
             UpdateCharacterUI();
+            UpdateInventoryUI();
         }
 
         public void Log(string text)
@@ -69,8 +71,8 @@ namespace SharpWorld
             PlayerHpPlaceholder.Value = Convert.ToInt32((currentHp / maxHp) * 100.0F);
             PlayerHpBarLabel.Text = $"HP: {currentHp}/{maxHp}";
 
-            float monsterCurrentHp = player.GetTarget().GetHp();
-            float monsterMaxHp = player.GetTarget().GetMaxHp();
+            float monsterCurrentHp = player?.GetTarget().GetHp() ?? 1;
+            float monsterMaxHp = player?.GetTarget().GetMaxHp() ?? 1;
             EnemyHpPlaceholder.Value = Convert.ToInt32((monsterCurrentHp / monsterMaxHp) * 100.0F);
             EnemyHpBarLabel.Text = $"Enemy HP: {monsterCurrentHp}/{monsterMaxHp}";
         }
@@ -83,6 +85,15 @@ namespace SharpWorld
             foreach(var monster in monsters)
             {
                 MonsterList.Items.Add(monster);
+            }
+        }
+
+        public void UpdateInventoryUI()
+        {
+            InventoryList.Items.Clear();
+            foreach(var item in GameWorld.Instance.GetPlayer().GetInventory())
+            {
+                InventoryList.Items.Add(item);
             }
         }
 
@@ -132,6 +143,27 @@ namespace SharpWorld
                 GameWorld.Instance.GetPlayer().Run();
             else
                 Log("You aren't in combat right now.");
+        }
+
+        private async void UseButton_Click(object sender, EventArgs e)
+        {
+            UseButton.Enabled = false;
+            if (InventoryList.SelectedItem != null)
+            {
+                ((Item)InventoryList.SelectedItem).Use(GameWorld.Instance.GetPlayer());
+                //Might be better to get this from player inventory to avoid dupes..
+                await Task.Delay(Config.ItemUseCooldown);
+            }
+            else
+            {
+                Log("You must select an item to use.");
+            }
+            UseButton.Enabled = true;
+        }
+
+        private void DropButton_Click(object sender, EventArgs e)
+        {
+            //Remove the item from players inventory.
         }
     }
 }
