@@ -60,6 +60,7 @@
     <Compile Include="Game\Items\Food.cs" />
     <Compile Include="Game\Items\Inventory.cs" />
     <Compile Include="Game\Items\Item.cs" />
+    <Compile Include="Game\Items\Loot.cs" />
     <Compile Include="Game\Units\Bosses\ToxicSerpent.cs" />
     <Compile Include="Helpers\Helper.cs" />
     <Compile Include="Game\Units\Monster.cs" />
