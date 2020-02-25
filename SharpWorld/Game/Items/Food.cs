@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SharpWorld.Game.Items
 {
-    class Food : Item
+    public class Food : Item
     {
         public int HpRestoreAmount { get; protected set; }
         //Maybe we want to display how much the food heals for?
@@ -18,7 +18,7 @@ namespace SharpWorld.Game.Items
             unit.Heal(HpRestoreAmount);
         }
 
-        public Food(string name, int hpRestoreAmount)
+        public Food(string name, int hpRestoreAmount) : base(name)
         {
             Name = name;
             HpRestoreAmount = hpRestoreAmount;

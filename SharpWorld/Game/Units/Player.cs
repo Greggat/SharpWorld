@@ -10,7 +10,7 @@ using SharpWorld.Helpers;
 
 namespace SharpWorld.Game.Units
 {
-    class Player : Unit
+    public class Player : Unit
     {
         private Zone _zone;
         public Zone GetZone() => _zone;
@@ -22,8 +22,8 @@ namespace SharpWorld.Game.Units
 
         private int _xp;
 
-        private List<Item> _inventory;
-        public List<Item> GetInventory() => _inventory;
+        private Inventory _inventory;
+        public List<Item> GetInventory() => _inventory.GetItems();
 
         public Player(string name)
         {
@@ -38,10 +38,10 @@ namespace SharpWorld.Game.Units
 
             _xp = 0;
 
-            _inventory = new List<Item>();
+            _inventory = new Inventory(this);
 
             //test inventory
-            _inventory.Add(new Food("Cooked Shrimp",4));
+            _inventory.AddItem(new Food("Cooked Shrimp",4), true);
             GameWorld.Instance.Log($"Your character, {_name}, has been created!");
         }
         private void LevelUp()

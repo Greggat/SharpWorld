@@ -58,6 +58,7 @@
     <Compile Include="Game\Config.cs" />
     <Compile Include="Game\GameWorld.cs" />
     <Compile Include="Game\Items\Food.cs" />
+    <Compile Include="Game\Items\Inventory.cs" />
     <Compile Include="Game\Items\Item.cs" />
     <Compile Include="Game\Units\Bosses\ToxicSerpent.cs" />
     <Compile Include="Helpers\Helper.cs" />

@@ -7,7 +7,7 @@ using SharpWorld.Game.Units;
 
 namespace SharpWorld.Game.Zones
 {
-    class Zone
+    public class Zone
     {
         public string Name { get; }
         public int LevelRequirement { get; }
