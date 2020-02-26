@@ -1,9 +1,4 @@
 ﻿using SharpWorld.Game.Units;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SharpWorld.Game.Items
 {
@@ -20,7 +15,6 @@ namespace SharpWorld.Game.Items
 
         public Food(string name, int hpRestoreAmount) : base(name)
         {
-            Name = name;
             HpRestoreAmount = hpRestoreAmount;
         }
     }

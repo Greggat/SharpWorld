@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SharpWorld.Game.Items
+﻿namespace SharpWorld.Game.Items
 {
     enum WeaponType
     {
@@ -19,7 +13,6 @@ namespace SharpWorld.Game.Items
 
         public Weapon(string name, int attack, int defense, WeaponType type) : base(name)
         {
-            Name = name;
             Attack = attack;
             Defense = defense;
             Type = type;

@@ -1,18 +1,9 @@
 ﻿using SharpWorld.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SharpWorld.Game.Units
 {
     public class Monster : Unit
     {
-        public Monster()
-        {
-            _name = "Null Monster";
-        }
         public Monster(string name, int level, int hp, int attack, int defense)
         {
             _name = name;

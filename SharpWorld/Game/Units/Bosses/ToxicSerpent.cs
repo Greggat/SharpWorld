@@ -1,22 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SharpWorld.Game.Units.Bosses
+﻿namespace SharpWorld.Game.Units.Bosses
 {
     class ToxicSerpent : Monster
     {
-        public ToxicSerpent()
+        public ToxicSerpent() : base("Toxic Serpent", 10, 50, 5, 5)
         {
-            _name = "Toxic Serpent";
-            _level = 10;
-            _hp = 50;
-            _maxHp = 50;
-
-            _baseAttack = 5;
-            _baseDefense = 5;
+            //Toxic Serpent..
         }
 
         public override void Retaliate(Unit unit)
