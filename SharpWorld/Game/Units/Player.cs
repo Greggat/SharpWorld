@@ -12,18 +12,29 @@ namespace SharpWorld.Game.Units
 {
     public class Player : Unit
     {
+        //Zones
         private Zone _zone;
         public Zone GetZone() => _zone;
+
+        //Combat
         private Monster _target;
         public Monster GetTarget() => _target;
         private bool _inCombat;
         public bool InCombat() => _inCombat;
         private bool _runaway;
 
-        private int _xp;
-
+        //Equipment
+        private Weapon _mainWeapon;
+        private Weapon _offhandWeapon;
         private Inventory _inventory;
         public List<Item> GetInventory() => _inventory.GetItems();
+
+        //stats
+        public override int MaxHp => base.MaxHp;
+        public override int Attack => _baseAttack + (_mainWeapon?.Attack ?? 0) + (_offhandWeapon?.Attack ?? 0);
+        public override int Defense => _baseAttack + (_mainWeapon?.Defense ?? 0) + (_offhandWeapon?.Defense ?? 0);
+
+        private int _xp;
 
         public Player(string name)
         {
@@ -33,8 +44,8 @@ namespace SharpWorld.Game.Units
             _maxHp = _hp;
 
             _level = 1;
-            _attack = 1;
-            _defense = 1;
+            _baseAttack = 1;
+            _baseDefense = 1;
 
             _xp = 0;
 
@@ -42,6 +53,7 @@ namespace SharpWorld.Game.Units
 
             //test inventory
             _inventory.AddItem(new Food("Cooked Shrimp",4), true);
+            _mainWeapon = new Weapon("Dagger",5,0,WeaponType.MainHand);
             GameWorld.Instance.Log($"Your character, {_name}, has been created!");
         }
         private void LevelUp()
@@ -51,8 +63,8 @@ namespace SharpWorld.Game.Units
             _level++;
             _maxHp++;
             _hp++;
-            _attack++;
-            _defense++;
+            _baseAttack++;
+            _baseDefense++;
             GameWorld.Instance.Log($"You leveled up to {_level}!");
         }
         public void AddXp(int xp)
@@ -62,13 +74,13 @@ namespace SharpWorld.Game.Units
                 LevelUp();
             GameWorld.Instance.GetForm().UpdateCharacterUI();
         }
-        private void Attack(Monster monster)
+        private void AttackMonster(Monster monster)
         {
-            int damage = Helper.GetRandom(0, _attack);
+            int damage = Helper.GetRandom(0, Attack);
             if (damage > 0)
             {
                 if (!Config.DisableDamageLog)
-                    GameWorld.Instance.Log($"{_name} attacked {monster.GetName()} for {damage} damage!");
+                    GameWorld.Instance.Log($"{_name} attacked {monster.Name} for {damage} damage!");
                 monster.Damage(this, damage);
                 AddXp(damage * Config.ExpRate);
             }
@@ -84,7 +96,7 @@ namespace SharpWorld.Game.Units
             _inCombat = true;
             while(this.IsAlive() && monster.IsAlive())
             {
-                Attack(monster);
+                AttackMonster(monster);
                 await Task.Delay(Config.CombatTickRate);
                 if (monster.IsAlive())
                 {

@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SharpWorld.Game.Items;
+using SharpWorld.Game.Units;
 
 namespace SharpWorld.UnitTests
 {
@@ -11,7 +12,8 @@ namespace SharpWorld.UnitTests
         public void RemoveItem_ItemRemoved_ReturnsTrue()
         {
             //Arrange
-            Inventory inventory = new Inventory();
+            Unit unit = new Unit();
+            Inventory inventory = new Inventory(unit);
             var result = inventory.AddItem(new Item("Item"), false);
 
             //Act

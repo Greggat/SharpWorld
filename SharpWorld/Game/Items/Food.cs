@@ -14,7 +14,7 @@ namespace SharpWorld.Game.Items
 
         public override void Use(Unit unit)
         {
-            GameWorld.Instance.Log($"{unit.GetName()} ate {Name}.");
+            GameWorld.Instance.Log($"{unit.Name} ate {Name}.");
             unit.Heal(HpRestoreAmount);
         }
 

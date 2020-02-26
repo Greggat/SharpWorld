@@ -14,18 +14,17 @@ namespace SharpWorld.Game.Units
         protected int _maxHp;
 
         protected int _level;
-        protected int _attack;
-        protected int _defense;
+        protected int _baseAttack;
+        protected int _baseDefense;
 
 
-        public string GetName() => _name;
+        public string Name => _name;
+        public int Level => _level;
 
-        public int GetHp() => _hp;
-        public int GetMaxHp() => _maxHp;
-
-        public int GetLevel() => _level;
-        public int GetAttack() => _attack;
-        public int GetDefense() => _defense;
+        public int Hp => _hp;
+        public virtual int MaxHp => _maxHp;
+        public virtual int Attack => _baseAttack;
+        public virtual int Defense => _baseDefense;
 
         public virtual bool IsAlive()
         {

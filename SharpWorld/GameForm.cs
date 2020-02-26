@@ -66,13 +66,13 @@ namespace SharpWorld
         public void UpdateHealthBars()
         {
             Player player = GameWorld.Instance.GetPlayer();
-            float currentHp = player.GetHp();
-            float maxHp = player.GetMaxHp();
+            float currentHp = player.Hp;
+            float maxHp = player.MaxHp;
             PlayerHpPlaceholder.Value = Convert.ToInt32((currentHp / maxHp) * 100.0F);
             PlayerHpBarLabel.Text = $"HP: {currentHp}/{maxHp}";
 
-            float monsterCurrentHp = player?.GetTarget().GetHp() ?? 1;
-            float monsterMaxHp = player?.GetTarget().GetMaxHp() ?? 1;
+            float monsterCurrentHp = player?.GetTarget().Hp ?? 1;
+            float monsterMaxHp = player?.GetTarget().MaxHp ?? 1;
             EnemyHpPlaceholder.Value = Convert.ToInt32((monsterCurrentHp / monsterMaxHp) * 100.0F);
             EnemyHpBarLabel.Text = $"Enemy HP: {monsterCurrentHp}/{monsterMaxHp}";
         }
@@ -101,11 +101,11 @@ namespace SharpWorld
         {
             Player player = GameWorld.Instance.GetPlayer();
 
-            PlayerNameValue.Text = player.GetName();
-            PlayerLevelValue.Text = player.GetLevel().ToString();
-            PlayerMaxHpValue.Text = player.GetMaxHp().ToString();
-            PlayerAttackValue.Text = player.GetAttack().ToString();
-            PlayerDefenseValue.Text = player.GetDefense().ToString();
+            PlayerNameValue.Text = player.Name;
+            PlayerLevelValue.Text = player.Level.ToString();
+            PlayerMaxHpValue.Text = player.MaxHp.ToString();
+            PlayerAttackValue.Text = player.Attack.ToString();
+            PlayerDefenseValue.Text = player.Defense.ToString();
             PlayerZoneValue.Text = player.GetZone().Name;
 
         }
@@ -127,9 +127,7 @@ namespace SharpWorld
 
         private void CommandButton_Click(object sender, EventArgs e)
         {
-            Log(CommandTextBox.Text+"\n");
-            GameLog.SelectionStart = GameLog.Text.Length;
-            GameLog.ScrollToCaret();
+            //Needs to be implemented...
         }
 
         private void label2_Click(object sender, EventArgs e)

@@ -21,17 +21,17 @@ namespace SharpWorld.Game.Units
             _maxHp = hp;
 
             _level = level;
-            _attack = attack;
-            _defense = defense;
+            _baseAttack = attack;
+            _baseDefense = defense;
         }
 
         public virtual void Retaliate(Unit unit)
         {
-            int damage = Helper.GetRandom(0, _attack);
+            int damage = Helper.GetRandom(0, _baseAttack);
             if (damage > 0)
             {
                 if (!Config.DisableDamageLog)
-                    GameWorld.Instance.Log($"{_name} attacked {unit.GetName()} for {damage} damage!");
+                    GameWorld.Instance.Log($"{_name} attacked {unit.Name} for {damage} damage!");
                 unit.Damage(this, damage);
             }
             else

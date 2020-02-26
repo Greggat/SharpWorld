@@ -24,7 +24,7 @@ namespace SharpWorld.Game.Zones
         {
             foreach(var monster in Monsters)
             {
-                if (monster.GetName() == name)
+                if (monster.Name == name)
                     return monster;
             }
             return new Monster("Null Monster", 1, 0, 0, 0);

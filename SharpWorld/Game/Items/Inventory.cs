@@ -25,7 +25,7 @@ namespace SharpWorld.Game.Items
             if (_items.Count < MaxItems && item != null)
             {
                 if (notify)
-                    GameWorld.Instance.Log($"{item.Name} was added to {_owner.GetName()}'s inventory.");
+                    GameWorld.Instance.Log($"{item.Name} was added to {_owner.Name}'s inventory.");
                 _items.Add(item);
                 return true;
             }
@@ -40,7 +40,7 @@ namespace SharpWorld.Game.Items
                 if (notify)
                 {
                     GameWorld.Instance.Log("Could not add item.");
-                    GameWorld.Instance.Log($"{_owner.GetName()}'s inventory is full.");
+                    GameWorld.Instance.Log($"{_owner.Name}'s inventory is full.");
                 }
                 return false;
             }

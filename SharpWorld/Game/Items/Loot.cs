@@ -20,7 +20,7 @@ namespace SharpWorld.Game.Items
             var lootDrops = new List<Item>();
             foreach(var loot in _loot)
             {
-                int winnerRoll = Convert.ToInt32(1F - loot.chance * 1000F);
+                int winnerRoll = Convert.ToInt32(1F - loot.chance * 10000F);
                 // Double check the math here later..
                 // The winner roll with an accuracy of up to 4 decimals
 

@@ -15,8 +15,8 @@ namespace SharpWorld.Game.Units.Bosses
             _hp = 50;
             _maxHp = 50;
 
-            _attack = 5;
-            _defense = 5;
+            _baseAttack = 5;
+            _baseDefense = 5;
         }
 
         public override void Retaliate(Unit unit)
